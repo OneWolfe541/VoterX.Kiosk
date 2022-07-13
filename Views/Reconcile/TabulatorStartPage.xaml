@@ -1,0 +1,64 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.ReconcilePrimary.TabulatorStartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.ReconcilePrimary"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="14">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <!-- COLUMN TWO ############################################################################ -->
+        <StackPanel Grid.Column="1" Orientation="Vertical" >
+            <Grid Margin="0,25,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="BackButton" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="32" Width="100" Padding="0" Click="BackButton_Click" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="BACK" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="NextButton" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="32" Width="100" Padding="0" Click="NextButton_Click" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="NEXT" FontSize="18" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <Grid Margin="0,25,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Name="TabulatorStartPageBoldLine1" Grid.Column="1" Text="NEXT, LET'S ENTER YOUR TABULATOR COUNTS!" Foreground="Black" FontWeight="DemiBold" FontSize="22" Margin="0,45,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                
+            </Grid>
+
+            <TextBlock Name="TabulatorStartPageInstructions1" Text="Make sure you have gathered the following from each tabulator:" Foreground="Black" FontSize="20" Margin="0,45,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+
+            <TextBlock Name="TabulatorPageItemList" Text="1) Serial Number" Foreground="Black" FontSize="20" Margin="0,35,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" />
+
+            <TextBlock Name="TabulatorStartPageInstructions2" Text="Select/Click the NEXT button to enter tabulator counts." Foreground="Black" FontSize="20" Margin="0,45,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+    </Grid>
+</Page>

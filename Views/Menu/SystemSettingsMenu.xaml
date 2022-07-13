@@ -1,0 +1,83 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Menu.SystemSettingsMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Menu"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="20">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" >
+            <Button Name="SystemMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SystemMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="SYSTEM">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_gear" Icon="Gear" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,1,10,0" />
+                    <TextBlock Text="SYSTEM" Foreground="{DynamicResource ApplicationForegroundColor}" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="NetworkMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="NetworkMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="NETWORK">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_clipboard" Icon="Clipboard" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="NETWORK" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PrintersMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="PrintersMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="PRINTERS">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="PRINTERS" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="ElectionMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ElectionMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="ELECTION">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_checksquare" Icon="CheckSquareOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="ELECTION" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="BallotsMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="BallotsMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="BALLOTS">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_filepdf" Icon="FilePdfOutline" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="BALLOTS" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Vertical" Visibility="Visible" >
+            <Button Name="SaveMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SaveMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="SAVE">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_save" Icon="Save" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="SAVE" />
+                </StackPanel>
+            </Button>
+
+            <Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,10,0,5" Visibility="Hidden" />
+
+            <Button Name="LogoutMenuButton" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="LogoutMenuButton_Click" Style="{DynamicResource ModernButtonStyle}"
+                    ToolTip="LOGOUT">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_signout" Icon="SignOut" Foreground="{DynamicResource ApplicationForegroundColor}" Height="30" Width="30" Margin="0,0,10,0" />
+                    <TextBlock Text="LOGOUT" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

@@ -1,0 +1,70 @@
+﻿<utilities:MasterBasePage x:Class="VoterXVCC.Views.MainVCCPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterXVCC.Views"
+      xmlns:utilities="clr-namespace:VoterX.Utilities.BasePageDefinitions;assembly=VoterX.Utilities"
+      xmlns:uc="clr-namespace:VoterX.Utilities.Controls;assembly=VoterX.Utilities"
+      xmlns:uv="clr-namespace:VoterX.Utilities.Views;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      Loaded="MasterBasePage_Loaded"
+      KeyDown="MasterBasePage_KeyDown"
+      >
+    <!-- https://fontawesome.com/icons?d=gallery&m=free -->
+
+    <Grid Name="WindowGrid" Background="{DynamicResource ApplicationBackgroundColor}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+
+        <!--<Rectangle Name="TitleBarRectangle" Grid.Row="0" Height="75" Fill="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Top" />
+
+        <Border Grid.Row="0" VerticalAlignment="Bottom" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0,0,0,1" >
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="5" ShadowDepth="2" />
+            </Border.Effect>
+        </Border>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" >
+            <Image Source="C:\Program Files\VoterX\Images\AES_VoterX_logo_white_small54.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="54" Margin="10,15,0,0" />
+            --><!--<Image Source="C:\VoterX\Images\AES flat-8.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,10,0,5" />--><!--
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="0,-15,0,0" VerticalAlignment="Top" Background="{DynamicResource ApplicationPrimaryColor}" >
+            <TextBlock Name="SamplePageHeaderText" Text="SAMPLE BALLOT MODE" FontSize="28" FontWeight="DemiBold" Foreground="Yellow" Margin="0,20,0,0" Padding="0,0,0,0" Visibility="Hidden" />
+            <StackPanel Orientation="Horizontal" Margin="0,-10,0,0" HorizontalAlignment="Center" >
+                <TextBlock Name="PageHeaderText" FontSize="34" FontWeight="DemiBold" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource ApplicationForegroundColor}" Padding="0,0,0,0" />
+                <TextBlock Name="DevelopmentPageHeaderText" Text=" - [DEVMODE]" FontSize="34" FontWeight="DemiBold" Foreground="LawnGreen" Padding="0,0,0,0" Visibility="Collapsed" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Name="CloseButton" Content="X" FontSize="32" FontWeight="DemiBold" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" VerticalContentAlignment="Top" Margin="0,5,5,0" Padding="7,0,7,0" Visibility="Collapsed" Style="{DynamicResource ModernHiddenExitButtonStyle}" />
+
+        <fa:ImageAwesome Name="fa_bars" Icon="Bars" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="40" Margin="0,32,10,0" Visibility="Visible" />
+        <Button Name="HamburgerButton" HorizontalAlignment="Right" VerticalAlignment="Top" Height="35" Width="40" Margin="0,32,10,0" Padding="0" Click="HamburgerButton_Click" Style="{DynamicResource ModernHiddenButtonStyle}">
+            <fa:ImageAwesome Icon="Bars" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="40" Visibility="Visible" />
+        </Button>-->
+
+        <!-- MAIN CONTENT -->
+        <Frame Name="MainFrameControl" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" />
+
+
+        <!-- SLIDING MENU -->
+        <uc:SliderMenuFrameControl Name="DynamicMenuSlider" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="0,-4,0,0" CollapseMode="Full" Visibility="Visible" />
+
+
+        <!-- STATUS BAR -->
+        <uv:StatusBarControl x:Name="StatusBarUserControl" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Panel.ZIndex="99" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Name="ApplicationStatusRight" FontSize="14" Foreground="{DynamicResource ApplicationPrimaryColor}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,2,10,10" Visibility="Visible" />
+
+        <!-- HEADER BAR AND SHADOW -->
+        <uv:MainHeaderControl x:Name="MainHeaderControl" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Loaded="MainHeaderControl_Loaded" />
+
+    </Grid>
+</utilities:MasterBasePage>

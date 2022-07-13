@@ -1,0 +1,114 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Admin.ReportsMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Admin"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="18">
+
+    <Grid Name="PageGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,15,0,0" Height="42" Width="250" Click="BackButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO MENU" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- Place holder box for displaying Animated Loading message for async lists -->
+        <ComboBox Name="TempLoadingSpinner" Grid.Row="0" Grid.Column="0" Visibility="Collapsed" >
+            <ComboBoxItem Name="TempLoadingSpinnerItem" IsSelected="True">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Loading" />
+                    <fa:ImageAwesome Name="LoadingSpinner" Icon="Spinner" Spin="True" Foreground="Black" Height="14" Width="14" Margin="5,3,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Grid.Row="1" Grid.Column="1" Name="ReportButtonGrid" Margin="10,60,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" Orientation="Horizontal" >
+                <TextBlock Text="SELECT A REPORT" Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>                
+                <ComboBox Name="ReportList" HorizontalAlignment="Left" VerticalAlignment="Top" SelectionChanged="ReportList_SelectionChanged" Width="525" Height="42" Margin="5,5,0,0" Style="{DynamicResource ComboBoxFlatStyle}" >
+                </ComboBox>
+            </StackPanel>
+
+            <!-- COLUMN ONE -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,25,0,0" Orientation="Vertical" >
+                <TextBlock Text="SELECT DATE OPTION" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <!--<RadioButton Name="ActivityToDateRadio" IsChecked="True" Grid.Row="2" Grid.Column="0" GroupName="DateRadioOptions" Click="ActivityToDateRadio_Click" Content="- ACTIVITY TO DATE" Margin="15,10,0,0" Style="{DynamicResource ModernRadioButtonStyle32}" />-->
+            <RadioButton Name="TodaysActivityRadio" Grid.Row="3" Grid.Column="0" IsChecked="True" GroupName="DateRadioOptions" Click="TodaysActivityRadio_Click" Content="- TODAYS ACTIVITY" Margin="15,10,0,0" Style="{DynamicResource ModernRadioButtonStyle32}" />
+            <RadioButton Name="SpecificDateRadio" Grid.Row="4" Grid.Column="0" GroupName="DateRadioOptions" Click="SpecificDateRadio_Click" Content="- SPECIFIC DATE" Margin="15,10,0,0" Style="{DynamicResource ModernRadioButtonStyle32}" />
+            <!--<RadioButton Name="DateRangeRadio" Grid.Row="5" Grid.Column="0" GroupName="DateRadioOptions" Click="DateRangeRadio_Click" Content="- DATE RANGE" Margin="15,10,0,0" Style="{DynamicResource ModernRadioButtonStyle32}" />-->
+
+            <StackPanel Name="SpecificDatePanel" Grid.Row="6" Grid.Column="0" Margin="0,20,0,0" Orientation="Vertical" Visibility="Collapsed" >
+                <TextBlock Text="SELECT ACTIVITY DATE" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="DATE" Margin="0,0,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="ActiveDateList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="42" Margin="5,0,0,0" SelectionChanged="ActiveDateList_SelectionChanged" Style="{DynamicResource ComboBoxFlatStyle}" >
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+            
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+            <Button Name="LogoutButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="LogoutButton_Click" Width="250" Height="42" FontSize="18" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_signout" Icon="SignOut" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="LOG OUT" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PrintButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="PrintButton_Click" Width="250" Height="42" Margin="0,5,0,0" FontSize="18" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT REPORT" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PreviewButton" HorizontalAlignment="Center" VerticalAlignment="Top" Click="PreviewButton_Click" Width="250" Height="42" Margin="0,5,0,0" FontSize="18" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="new_fa_search" Icon="Search" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="PREVIEW REPORT" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

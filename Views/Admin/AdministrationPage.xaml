@@ -1,0 +1,39 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Admin.AdministrationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Admin"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="18"
+      Loaded="Page_Loaded">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="LogoutButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,15,0,0" Height="42" Width="250" Click="LogoutButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_signout" Icon="SignOut" Foreground="White" Height="24" Width="24" Margin="0,1,10,0" />
+                <TextBlock Text="LOG OUT" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" >
+            <TextBlock Text="WELCOME TO THE SYSTEM MANAGEMENT PAGE" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="26" Margin="15,65,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <TextBlock Text="CHOOSE ONE OF THE MENU OPTIONS TO BEGIN" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="26" Margin="15,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+
+    </Grid>
+</Page>

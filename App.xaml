@@ -1,0 +1,15 @@
+﻿<Application x:Class="VoterXVCC.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:VoterXVCC"
+             StartupUri="MainWindow.xaml">
+    
+    <!-- https://stackoverflow.com/questions/6229724/change-theme-at-runtime -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="VoterX.Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

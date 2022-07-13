@@ -1,0 +1,73 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Manage.EmergencyBallotsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Manage"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="{DynamicResource FontSizeSmall}"
+      Loaded="Page_Loaded">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+        
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,45,0,0" HorizontalAlignment="Center" >
+            <StackPanel Margin="0,0,0,0" Orientation="Vertical" >
+                <TextBlock Text="THIS WILL PRINT A VALID, MACHINE READABLE" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" VerticalAlignment="Center" />
+                <TextBlock Text="BALLOT AND SHOULD ONLY BE USED IN CASE OF" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" VerticalAlignment="Center" />
+                <TextBlock Text="AN EMERGENCY BY THE CLERK OR AN" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" VerticalAlignment="Center" />
+                <TextBlock Text="AGENT OF THE CLERK." Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <StackPanel Name="BallotStylePanel" Margin="0,45,0,0" Orientation="Horizontal" Visibility="Visible">
+                <TextBlock Text="BALLOT STYLE" VerticalAlignment="Bottom" Height="42" FontSize="18" Margin="0,0,0,0" Style="{DynamicResource ModernTextBlockLabel}" />
+                <!--<ComboBox Name="BallotStyleList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="42" Margin="5,5,0,0" IsEnabled="True" Style="{DynamicResource ComboBoxFlatStyle}" >
+                </ComboBox>-->
+                <ComboBox Name="BallotStylesList" 
+                          DisplayMemberPath="BallotStyleName" 
+                          SelectedValuePath="BallotStyleId" 
+                          Width="350" Margin="5,5,0,0"
+                          Height="{DynamicResource ControlHeightNormal}"
+                          Style="{DynamicResource ComboBoxFlatStyle}"
+                          ToolTip="Select a ballot style"
+                          IsEnabled="True"
+                          SelectedIndex="0"
+                          ItemsSource="{Binding BallotStyleList}"
+                          SelectedItem="{Binding SelectedBallotStyleItem}"
+                          IsSynchronizedWithCurrentItem="True" />
+            </StackPanel>
+
+            <Grid Margin="0,65,0,0" HorizontalAlignment="Stretch" >
+                <Button Name="CancelButton" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="42" Width="220" Margin="0,0,0,0" Cursor="Hand" HorizontalAlignment="Left" Style="{DynamicResource ModernButtonStyle}" 
+                        Command="{Binding Path=GoBackCommand}" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                        <TextBlock Text="RETURN TO MENU" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="PrintButton" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="42" Width="220" Margin="0,0,0,0" Cursor="Hand" HorizontalAlignment="Right" Style="{DynamicResource ModernButtonStyle}" 
+                        Command="{Binding Path=PrintBallotCommand}" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                        <TextBlock Text="PRINT" FontSize="18" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+    </Grid>
+</Page>

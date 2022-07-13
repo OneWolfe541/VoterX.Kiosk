@@ -1,0 +1,36 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Super.Search.SuperSearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Super.Search"
+      xmlns:views="clr-namespace:VoterX.Utilities.Views;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      Loaded="Page_Loaded">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <views:VoterSearchNameView Grid.Column="0" x:Name="VoterSearchNameView" Loaded="VoterSearchName_Loaded" Margin="10,5,0,0" />
+
+        <views:VoterSearchScanView Grid.Column="0" x:Name="VoterSearchScanView" Loaded="VoterSearchScan_Loaded" Margin="10,5,0,0" Visibility="Collapsed" />
+
+        <views:VoterSearchView Grid.Column="1" x:Name="VoterSearchView" Loaded="VoterSearchView_Loaded" />
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+            <!--<TextBlock Name="ApplicationStatusText" FontSize="14" />-->
+            <Button Name="LogOutButton" HorizontalAlignment="Left" VerticalAlignment="Top" Click="LogOutButton_Click" Width="240" Height="42" FontSize="18" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="LOG OUT" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

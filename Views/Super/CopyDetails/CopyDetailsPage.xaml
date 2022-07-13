@@ -1,0 +1,646 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Super.CopyDetails.CopyDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Super.CopyDetails"
+      mc:Ignorable="d" 
+      xmlns:views="clr-namespace:VoterX.Utilities.Views;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      FontSize="14"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <sys:Double x:Key="iconHeight">10</sys:Double>
+        <sys:Double x:Key="iconWidth">10</sys:Double>
+        <sys:Double x:Key="fieldHeight">22</sys:Double>
+    </Page.Resources>
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <!-- COLUMN TWO ############################################################################ -->
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="50,15,0,0" >
+                <TextBlock Text="FROM VOTER RECORD" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+            </StackPanel>
+            <StackPanel Name="SearchFromIdPanel" Orientation="Horizontal" Margin="50,5,0,0" >
+                <Border Name="SearchFromIdLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                    <TextBlock Text="VOTER ID" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                </Border>
+                <TextBox Text="{Binding Path=FromBarCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchFromVoterCommand, UpdateSourceTrigger=PropertyChanged}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
+            </StackPanel>
+            <StackPanel Name="FromHistoryPanel" Orientation="Horizontal" Visibility="Visible" Margin="50,15,0,0">
+                <Border Name="FromHistoryLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                    <TextBlock Text="VOTER HISTORY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                </Border>
+                <ComboBox Name="FromVotersHistoryList"
+                                  DisplayMemberPath="HistoryTitle" 
+                                  SelectedValuePath="HistoryId"
+                                  Width="485" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding VoterHistoryList}"
+                                  SelectedItem="{Binding SelectedVoterHistoryItem}"
+                                  IsSynchronizedWithCurrentItem="True" 
+                                  IsEnabled="True" />
+            </StackPanel>
+            <Grid Name="FromVoterDetailGrid" Margin="50,10,0,0" HorizontalAlignment="Left" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromVoterIdPanel" Orientation="Horizontal" >
+                        <Border Name="FromVoterIdLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="VOTER ID" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.VoterID, Mode=TwoWay}" Width="150" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="FromBirthYearPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="FromBirthYearLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="90" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BIRTH YEAR" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.DOBYear, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="FromGenderPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="FromGenderLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="65" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="GENDER" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.Gender, Mode=TwoWay}" Width="50" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromLastNamePanel" Orientation="Horizontal" >
+                        <Border Name="FromLastNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="LAST NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.LastName, Mode=TwoWay}" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="FromGenerationPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="FromGenerationLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="GENERATION" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.Generation, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                        <StackPanel Name="FromFirstNameGrid" Orientation="Horizontal" >
+                            <Border Name="FromFirstNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="FIRST NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Text="{Binding Path=CopyFromVoter.Data.Title, Mode=TwoWay}" Width="50" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Visibility="Collapsed" />
+                            <TextBox Text="{Binding Path=CopyFromVoter.Data.FirstName, Mode=TwoWay}" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                        </StackPanel>
+
+                        <StackPanel Name="FromMiddleNamePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                            <Border Name="FromMiddleNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="MIDDLE NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Text="{Binding Path=CopyFromVoter.Data.MiddleName, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromPrecinctPartsPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="FromPrecinctPartsLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="PRECINCT PART" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="FromPrecinctPartsList"
+                                  DisplayMemberPath="PrecinctPart" 
+                                  SelectedValuePath="PrecinctPartID"
+                                  Width="250" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding PrecinctPartList}"
+                                  SelectedItem="{Binding SelectedFromPrecinctPartItem}"
+                                  IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="FromPartyGrid" Orientation="Horizontal" Visibility="Visible" Margin="5,0,0,0">
+                        <Border Name="FromPartyLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="PARTY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="FromPartyList"
+                                  DisplayMemberPath="PartyCode" 
+                                  SelectedValuePath="PartyCode"
+                                  Width="120" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding PartyList}"
+                                  SelectedItem="{Binding SelectedFromPartyItem}"
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromBallotStylePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="FromBallotStyleLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT STYLE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="FromBallotStylesList"
+                                  DisplayMemberPath="BallotStyleName" 
+                                  SelectedValuePath="BallotStyleId"
+                                  Width="250" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding BallotStyleList}"
+                                  SelectedItem="{Binding SelectedFromBallotStyleItem}"
+                                  IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="FromSSNGrid" Orientation="Horizontal" Visibility="Visible" Margin="5,0,0,0">
+                        <Border Name="FromSSNLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="SSN4" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.SSN, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="8" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromLogcodePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="FromLogcodeLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CURRENT STATUS" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="FromLogCodesList"
+                                  DisplayMemberPath="LogDescription" 
+                                  SelectedValuePath="LogCode"
+                                  Width="455" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding LogCodeList}"
+                                  SelectedItem="{Binding SelectedFromLogCodeItem}"                                  
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="9" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromLogDatePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="FromLogDateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CURRENT DATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.ActivityDate, Mode=TwoWay}" Width="455" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="10" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromSitesPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="FromSitesLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="SITE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="FromSiteList"
+                                  DisplayMemberPath="PlaceName" 
+                                  SelectedValuePath="PollID"
+                                  Width="291" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding LocationList}"
+                                  SelectedItem="{Binding SelectedFromLocationItem}"                                  
+                                  IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="FromComputerPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="FromComputerLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="COMPUTER" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.ComputerID, Mode=TwoWay}" Width="49" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="11" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" HorizontalAlignment="Stretch" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="12" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromApplicationIssuedPanel" Orientation="Horizontal" >
+                        <Border Name="FromApplicationIssuedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION ISSUED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.ApplicationIssued, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="13" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromApplicationRejectedPanel" Orientation="Horizontal" >
+                        <Border Name="FromApplicationRejectedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION REJECTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.ApplicationRejected, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="14" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromApplicationAcceptedPanel" Orientation="Horizontal" >
+                        <Border Name="FromApplicationAcceptedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION ACCEPTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.ApplicationAccepted, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="15" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" HorizontalAlignment="Stretch" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="16" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromBallotPrintedPanel" Orientation="Horizontal" >
+                        <Border Name="FromBallotPrintedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT PRINTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.BallotPrinted, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="17" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromBallotRejectedReasonPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="FromBallotRejectedReasonLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="REJECTED REASONS" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="FromBallotRejectedReasonList"
+                                  DisplayMemberPath="RejectedReasonDescription" 
+                                  SelectedValuePath="ServiseCode"
+                                  Width="395" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding BallotRejectedReasonList}"
+                                  SelectedItem="{Binding SelectedBallotRejectedReasonItem}"                                  
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="18" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="FromBallotRejectedPanel" Orientation="Horizontal" >
+                        <Border Name="FromBallotRejectedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT REJECTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyFromVoter.Data.BallotRejectedDate, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+        <StackPanel Grid.Column="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="15,15,0,0" >
+                <TextBlock Text="TO VOTER RECORD" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+            </StackPanel>
+            <StackPanel Name="SearchToIdPanel" Orientation="Horizontal" Margin="15,5,0,0" >
+                <Border Name="SearchToIdLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                    <TextBlock Text="VOTER ID" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                </Border>
+                <TextBox Text="{Binding Path=ToBarCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" >
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=SearchToVoterCommand, UpdateSourceTrigger=PropertyChanged}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
+            </StackPanel>
+            <Grid Name="VoterDetailExtendedGrid" Margin="10,47,50,0" HorizontalAlignment="Right" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToVoterIdPanel" Orientation="Horizontal" >
+                        <Border Name="ToVoterIdLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="VOTER ID" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.VoterID, Mode=TwoWay}" Width="150" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="ToBirthYearPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="ToBirthYearLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="90" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BIRTH YEAR" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.DOBYear, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="ToGenderPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="ToGenderLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="65" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="GENDER" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.Gender, Mode=TwoWay}" Width="50" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToLastNamePanel" Orientation="Horizontal" >
+                        <Border Name="ToLastNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="LAST NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.LastName, Mode=TwoWay}" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+
+                    <StackPanel Name="ToGenerationPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="ToGenerationLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="GENERATION" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.Generation, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                        <StackPanel Name="ToFirstNameGrid" Orientation="Horizontal" >
+                            <Border Name="ToFirstNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="FIRST NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Text="{Binding Path=CopyToVoter.Data.Title, Mode=TwoWay}" Width="50" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Visibility="Collapsed" />
+                            <TextBox Text="{Binding Path=CopyToVoter.Data.FirstName, Mode=TwoWay}" Width="250" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                        </StackPanel>
+
+                        <StackPanel Name="ToMiddleNamePanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                            <Border Name="ToMiddleNameLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                                <TextBlock Text="MIDDLE NAME" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                            </Border>
+                            <TextBox Text="{Binding Path=CopyToVoter.Data.MiddleName, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToPrecinctPartsPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="ToPrecinctPartsLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="PRECINCT PART" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="ToPrecinctPartsList"
+                                  DisplayMemberPath="PrecinctPart" 
+                                  SelectedValuePath="PrecinctPartID"
+                                  Width="250" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding PrecinctPartList}"
+                                  SelectedItem="{Binding SelectedToPrecinctPartItem}"
+                                  IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="ToPartyGrid" Orientation="Horizontal" Visibility="Visible" Margin="5,0,0,0">
+                        <Border Name="ToPartyLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="PARTY" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="ToPartyList"
+                                  DisplayMemberPath="PartyCode" 
+                                  SelectedValuePath="PartyCode"
+                                  Width="120" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding PartyList}"
+                                  SelectedItem="{Binding SelectedToPartyItem}"
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToBallotStylePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="ToBallotStyleLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT STYLE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="ToBallotStylesList"
+                                  DisplayMemberPath="BallotStyleName" 
+                                  SelectedValuePath="BallotStyleId"
+                                  Width="250" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding BallotStyleList}"
+                                  SelectedItem="{Binding SelectedToBallotStyleItem}"
+                                  IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="ToSSNGrid" Orientation="Horizontal" Visibility="Visible" Margin="5,0,0,0">
+                        <Border Name="ToSSNLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="SSN4" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.SSN, Mode=TwoWay}" Width="120" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="8" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToLogcodePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="ToLogcodeLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CURRENT STATUS" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="ToLogCodesList"
+                                  DisplayMemberPath="LogDescription" 
+                                  SelectedValuePath="LogCode"
+                                  Width="455" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding LogCodeList}"
+                                  SelectedItem="{Binding SelectedToLogCodeItem}"                                  
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="9" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToLogDatePanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="ToLogDateLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="CURRENT DATE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.ActivityDate, Mode=TwoWay}" Width="455" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="10" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToSitesPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="ToSitesLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="140" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="SITE" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="ToSiteList"
+                                  DisplayMemberPath="PlaceName" 
+                                  SelectedValuePath="PollID"
+                                  Width="291" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding LocationList}"
+                                  SelectedItem="{Binding SelectedToLocationItem}"                                  
+                                  IsEnabled="False" />
+                    </StackPanel>
+
+                    <StackPanel Name="ToComputerPanel" Orientation="Horizontal" Margin="5,0,0,0" >
+                        <Border Name="ToComputerLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="COMPUTER" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.ComputerID, Mode=TwoWay}" Width="49" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="11" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" HorizontalAlignment="Stretch" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="12" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToApplicationIssuedPanel" Orientation="Horizontal" >
+                        <Border Name="ToApplicationIssuedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION ISSUED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.ApplicationIssued, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="13" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToApplicationRejectedPanel" Orientation="Horizontal" >
+                        <Border Name="ToApplicationRejectedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION REJECTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.ApplicationRejected, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="14" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToApplicationAcceptedPanel" Orientation="Horizontal" >
+                        <Border Name="ToApplicationAcceptedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="APPLICATION ACCEPTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.ApplicationAccepted, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <Border Grid.Row="15" BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" HorizontalAlignment="Stretch" Margin="0,3,0,2" />
+
+                <StackPanel Grid.Row="16" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToBallotPrintedPanel" Orientation="Horizontal" >
+                        <Border Name="ToBallotPrintedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT PRINTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.BallotPrinted, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="17" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToBallotRejectedReasonPanel" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,0">
+                        <Border Name="ToBallotRejectedReasonLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="REJECTED REASONS" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <ComboBox Name="ToBallotRejectedReasonList"
+                                  DisplayMemberPath="RejectedReasonDescription" 
+                                  SelectedValuePath="ServiseCode"
+                                  Width="395" Margin="0,0,0,0"
+                                  Height="{StaticResource fieldHeight}"
+                                  HorizontalAlignment="Left"
+                                  Style="{DynamicResource ComboBoxFlatStyle}"                                  
+                                  ItemsSource="{Binding BallotRejectedReasonList}"
+                                  SelectedItem="{Binding SelectedBallotRejectedReasonItem}"                                  
+                                  IsEnabled="False" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="18" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Name="ToBallotRejectedPanel" Orientation="Horizontal" >
+                        <Border Name="ToBallotRejectedLabel" Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="200" Height="{StaticResource fieldHeight}" Margin="0" >
+                            <TextBlock Text="BALLOT REJECTED" Foreground="{DynamicResource ApplicationForegroundColor}" HorizontalAlignment="Left" Margin="6,2,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=CopyToVoter.Data.BallotRejectedDate, Mode=TwoWay}" Width="395" Height="{StaticResource fieldHeight}" Margin="0,0,0,0" Padding="2,0,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" IsReadOnly="True" />
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

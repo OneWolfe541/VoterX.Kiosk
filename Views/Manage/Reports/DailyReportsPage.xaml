@@ -1,0 +1,124 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Manage.DailyReportsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Manage"
+      xmlns:convert="clr-namespace:VoterX.Utilities.Converters;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="{DynamicResource FontSizeSmall}"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <convert:BooleanToVisibilityConverter x:Key="convVis" />
+    </Page.Resources>
+
+    <Grid Name="PageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" /><!-- SPACER -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,15,10,0" Height="{DynamicResource ControlHeightNormal}" Width="250" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Command="{Binding Path=GoBackCommand}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO MENU" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Grid.Row="1" Grid.Column="1" Name="ReportButtonGrid" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" Orientation="Horizontal" >
+                <TextBlock Text="SELECT A REPORT" Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>                
+                <ComboBox Name="ReportList" 
+                              DisplayMemberPath="Name" 
+                              SelectedValuePath="Name" 
+                              Width="525" Margin="5,5,0,0"
+                              Height="{DynamicResource ControlHeightNormal}"
+                              Style="{DynamicResource ComboBoxFlatStyle}"
+                              ToolTip="Select a report"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding ReportsList}"
+                              SelectedItem="{Binding SelectedReportItem}"
+                              IsSynchronizedWithCurrentItem="True" />
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,25,0,0" Orientation="Vertical" >
+                <TextBlock Text="SELECT DATE OPTION" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </StackPanel>
+
+            <RadioButton Name="TodaysActivityRadio" Grid.Row="3" Grid.Column="0" IsChecked="{Binding Path=TodayIsSelected, Mode=TwoWay}" GroupName="DateRadioOptions" Content="- TODAYS ACTIVITY" Margin="15,10,0,0" Style="{DynamicResource ModernRadioButtonStyle32}" />
+            <RadioButton Name="SpecificDateRadio" Grid.Row="4" Grid.Column="0" IsChecked="{Binding Path=SpecificIsSelected, Mode=TwoWay}" GroupName="DateRadioOptions" Content="- SPECIFIC DATE" Margin="15,10,0,0" Style="{DynamicResource ModernRadioButtonStyle32}" />
+
+            <StackPanel Name="SpecificDatePanel" Grid.Row="6" Grid.Column="0" Margin="0,20,0,0" Orientation="Vertical" Visibility="{Binding Path=SpecificDateVisibility, Converter={StaticResource convVis}}" >
+                <TextBlock Text="SELECT ACTIVITY DATE" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="DATE" Margin="0,0,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="ActiveDateList" 
+                              DisplayMemberPath="Date" 
+                              SelectedValuePath="Date" 
+                              Width="300" Margin="5,0,0,0"
+                              Height="{DynamicResource ControlHeightNormal}"
+                              Style="{DynamicResource ComboBoxFlatStyle}"
+                              ToolTip="Select a date"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding ActivityDateList}"
+                              SelectedItem="{Binding SelectedActivityDateItem}"
+                              IsSynchronizedWithCurrentItem="True" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Stretch" Margin="0,10,15,0">
+            <Button Name="PrintButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="42" Margin="0,5,0,0" FontSize="18" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" 
+                    Command="{Binding Path=PrintCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT REPORT" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="PreviewButton" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="42" Margin="0,5,0,0" FontSize="18" Visibility="Visible" Style="{DynamicResource ModernButtonStyle}" 
+                    Command="{Binding Path=PreviewCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="new_fa_search" Icon="Search" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="PREVIEW REPORT" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

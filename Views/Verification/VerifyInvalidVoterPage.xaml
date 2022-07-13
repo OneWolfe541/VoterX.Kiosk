@@ -1,0 +1,141 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Verification.VerifyInvalidVoterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Verification"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="18">
+
+    <Grid Name="PageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" /><!-- SPACER -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,15,0,0" Height="42" Width="250" Click="BackButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO SEARCH" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Name="VoterDetailGrid" Grid.Row="1" Grid.Column="1" Margin="20,15,32,0" HorizontalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" >
+                <StackPanel Name="IneligibleVoter" Visibility="Visible" Orientation="Vertical" Margin="0,0,0,5" >
+                    <TextBlock Text="THIS VOTER IS NOT ELIGIBLE TO VOTE IN THIS ELECTION" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                </StackPanel>
+                <TextBlock Name="CheckVoterInfoMessage" Text="PLEASE VERIFY THE VOTER'S INFORMATION BY CHECKING THE BOXES." FontSize="20" Margin="0,10,0,10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" Visibility="Collapsed" />
+            </StackPanel>
+
+            <StackPanel Name="IDVarification" Grid.Row="1" Grid.Column="0" Orientation="Vertical" Visibility="Collapsed" Margin="0,10,0,18" >
+                <TextBlock Name="IDQuestion" Text="VOTER MUST PRESENT A VALID ID" Foreground="Black" FontWeight="DemiBold" Margin="8,0,0,0" />
+                <StackPanel Orientation="Horizontal" >
+                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                        <TextBlock Text="ID REQUIRED" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="16" Margin="8,7,0,0"/>
+                    </Border>
+                    <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                    </Border>
+                    <CheckBox Grid.Row="2" Name="IDCorrect" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="Validation_Click">
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Name="CheckNameGrid" Grid.Row="2" Grid.Column="0" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                <TextBlock Name="NameQuestion" Text="CONFIRM THE VOTER'S FULL NAME" Foreground="Black" FontWeight="DemiBold" Margin="8,0,0,0" Visibility="Collapsed" />
+                <StackPanel Orientation="Horizontal" >
+                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                        <TextBlock Text="NAME" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="16" Margin="8,7,0,0"/>
+                    </Border>
+                    <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                        <TextBlock Name="FullName" FontSize="16" Margin="10,6,0,0"/>
+                    </Border>
+                    <CheckBox Grid.Row="2" Name="NameCorrect" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="Validation_Click" Visibility="Collapsed">
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Name="CheckAddressGrid" Grid.Row="4" Grid.Column="0" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                <TextBlock Name="AddressQuestion" Text="CONFIRM THE VOTER'S ADDRESS" Foreground="Black" Margin="8,10,0,0" FontWeight="DemiBold" Visibility="Collapsed" />
+                <StackPanel Orientation="Horizontal" >
+                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                        <TextBlock Text="ADDRESS" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="16" Margin="8,7,0,0"/>
+                    </Border>
+                    <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                        <StackPanel Orientation="Horizontal" Margin="10,6,0,0">
+                            <TextBlock Name="Address" FontSize="16" />
+                            <TextBlock Text=", " FontSize="16" />
+                            <TextBlock Name="CityStateAndZip" FontSize="16" Margin="4,0,0,0" />
+                        </StackPanel>
+                    </Border>
+                    <CheckBox Grid.Row="3" Name="AddressCorrect" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="Validation_Click" Visibility="Collapsed">
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Name="CheckDateGrid" Grid.Row="3" Grid.Column="0" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                <TextBlock Name="DateQuestion" Text="CONFIRM THE VOTER'S BIRTH YEAR" Foreground="Black" Margin="8,10,0,0" FontWeight="DemiBold" Visibility="Collapsed" />
+                <StackPanel Orientation="Horizontal" >
+                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                        <TextBlock Text="BIRTH YEAR" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="16" Margin="8,7,0,0"/>
+                    </Border>
+                    <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                        <TextBlock Name="BirthYear" FontSize="16" Margin="10,6,0,0"/>
+                    </Border>
+                    <CheckBox Grid.Row="3" Name="DateCorrect" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="Validation_Click" Visibility="Collapsed">
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="6" Grid.Column="0" Orientation="Vertical" >
+                <StackPanel Name="IneligibleReason" Visibility="Visible" Orientation="Vertical" Margin="0,15,0,5" >
+                    <TextBlock Text="VOTERS WHO ARE REGISTERED AS DTS(DECLINED TO STATE) " FontSize="22" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                    <TextBlock Text="ARE INELIGIBLE TO VOTE IN THIS ELECTION. IN A PRIMARY" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                    <TextBlock Text="ELECTION VOTERS MUST BE REGISTERED WITH A MAJOR" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                    <TextBlock Text="POLITICAL PARTY" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Red" />
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Name="BallotFunctions" Grid.Row="1" Grid.Column="2" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Stretch" Margin="0,15,15,0" >
+            <Button Name="Provisional" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Provisional_Click" Height="42" Width="250" Padding="5" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_pencil" Icon="Pencil" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="PROVISIONAL" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Page>

@@ -1,0 +1,226 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Admin.EndofDayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Admin"
+      xmlns:uc="clr-namespace:VoterX.Utilities.UserControls;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      FontSize="18">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="LogoutButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,15,0,0" Height="42" Width="175" Click="LogoutButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_signout" Icon="SignOut" Foreground="White" Height="24" Width="24" Margin="0,1,10,0" />
+                <TextBlock Text="LOG OUT" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Name="PrintVerificationGrid" Grid.Row="1" Grid.Column="1" Margin="0,45,32,0" HorizontalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Daily Report Troubleshooting Grid -->
+            <Grid Name="DailyReportTroubleshootingGrid" Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Button Name="StartEndOfDayButton" Grid.Row="0" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="StartEndOfDayButton_Click" Style="{DynamicResource ModernButtonStyle}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Icon="Download" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                        <TextBlock Text="START END OF DAY PROCESS" FontSize="16" />
+                    </StackPanel>
+                </Button>
+
+                <TextBlock Name="DailyReportPrintingStatus" Grid.Row="0" Grid.Column="0" Text="THE DAILY SUMMARY REPORT HAS BEEN SENT TO THE PRINTER" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,5,10,5" VerticalAlignment="Center" Visibility="Collapsed" />
+
+                <StackPanel Grid.Row="1"  Orientation="Vertical" >
+                    <uc:YesNoQuestionControl x:Name="DailyReportPrintQuestion" Question="Did the Daily Summary Report print properly?" AnswerClick="DailyReportPrintQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center" Visibility="Collapsed"></uc:YesNoQuestionControl>                    
+                </StackPanel>
+
+                <StackPanel Name="DailyReportPrinterCheckPanel" Grid.Row="2" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <TextBlock Text="GO THROUGH THE BASIC PRINTER TROUBLESHOOTING STEPS" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,6,0,0" />
+                    <uc:YesNoQuestionControl x:Name="DailyReportPrinterCheckQuestion" Grid.Row="1" Question="After troubleshooting the printer did the report print properly?" AnswerClick="DailyReportPrinterCheckQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center" ></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="DailyReportOptionsPanel" Grid.Row="3" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="25,1,2,2" Width="695" Height="42" Margin="0,0,5,0" >
+                            <TextBlock Text="I want to log out and try reconciling on a different machine. " Foreground="Black" Margin="10,6,0,0" />
+                        </Border>
+                        <CheckBox Grid.Row="2" Name="TransferClerkCheck" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="TransferClerkCheck_Click">
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Spoiled Report Troubleshooting Grid -->
+            <Grid Name="SpoiledReportTroubleshootingGrid" Grid.Row="1" Grid.Column="0" Margin="0,25,0,0" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Name="SpoiledReportPrintingStatus" Grid.Row="0" Grid.Column="0" Text="THE SPOILED REPORT HAS BEEN SENT TO THE PRINTER" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,5,10,5" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="1"  Orientation="Vertical" >
+                    <uc:YesNoQuestionControl x:Name="SpoiledReportPrintQuestion" Question="Did the Spoiled Report print properly?" AnswerClick="SpoiledReportPrintQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center"></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="SpoiledReportPrinterCheckPanel" Grid.Row="2" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <TextBlock Text="GO THROUGH THE BASIC PRINTER TROUBLESHOOTING STEPS" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,6,0,0" />
+                    <uc:YesNoQuestionControl x:Name="SpoiledReportPrinterCheckQuestion" Grid.Row="1" Question="After troubleshooting the printer did the report print properly?" AnswerClick="SpoiledReportPrinterCheckQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center" ></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="SpoiledReportOptionsPanel" Grid.Row="3" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="25,1,2,2" Width="695" Height="42" Margin="0,0,5,0" >
+                            <TextBlock Text="I want to log out and try reconciling on a different machine. " Foreground="Black" Margin="10,6,0,0" />
+                        </Border>
+                        <CheckBox Grid.Row="2" Name="TransferSpoiledCheck" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="TransferClerkCheck_Click">
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Provisional Report Troubleshooting Grid -->
+            <Grid Name="ProvisionalReportTroubleshootingGrid" Grid.Row="2" Grid.Column="0" Margin="0,25,0,0" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Name="ProvisionalReportPrintingStatus" Grid.Row="0" Grid.Column="0" Text="THE PROVISIONAL REPORT HAS BEEN SENT TO THE PRINTER" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,5,10,5" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="1"  Orientation="Vertical" >
+                    <uc:YesNoQuestionControl x:Name="ProvisionalReportPrintQuestion" Question="Did the Provisional Report print properly?" AnswerClick="ProvisionalReportPrintQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center"></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="ProvisionalReportPrinterCheckPanel" Grid.Row="2" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <TextBlock Text="GO THROUGH THE BASIC PRINTER TROUBLESHOOTING STEPS" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,6,0,0" />
+                    <uc:YesNoQuestionControl x:Name="ProvisionalReportPrinterCheckQuestion" Grid.Row="1" Question="After troubleshooting the printer did the report print properly?" AnswerClick="ProvisionalReportPrinterCheckQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center" ></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="ProvisionalReportOptionsPanel" Grid.Row="3" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="25,1,2,2" Width="695" Height="42" Margin="0,0,5,0" >
+                            <TextBlock Text="I want to log out and try reconciling on a different machine. " Foreground="Black" Margin="10,6,0,0" />
+                        </Border>
+                        <CheckBox Grid.Row="2" Name="TransferProvisionalCheck" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="TransferClerkCheck_Click">
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- Daily Detail Report Troubleshooting Grid -->
+            <Grid Name="DetailReportTroubleshootingGrid" Grid.Row="3" Grid.Column="0" Margin="0,25,0,0" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Name="DetailReportPrintingStatus" Grid.Row="0" Grid.Column="0" Text="THE DAILY DETAIL REPORT HAS BEEN SENT TO THE PRINTER" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,5,10,5" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="1"  Orientation="Vertical" >
+                    <uc:YesNoQuestionControl x:Name="DetailReportPrintQuestion" Question="Did the Daily Detail Report print properly?" AnswerClick="DetailReportPrintQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center"></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="DetailReportPrinterCheckPanel" Grid.Row="2" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <TextBlock Text="GO THROUGH THE BASIC PRINTER TROUBLESHOOTING STEPS" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,6,0,0" />
+                    <uc:YesNoQuestionControl x:Name="DetailReportPrinterCheckQuestion" Grid.Row="1" Question="After troubleshooting the printer did the report print properly?" AnswerClick="DetailReportPrinterCheckQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center" ></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="DetailReportOptionsPanel" Grid.Row="3" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="25,1,2,2" Width="695" Height="42" Margin="0,0,5,0" >
+                            <TextBlock Text="I want to log out and try reconciling on a different machine. " Foreground="Black" Margin="10,6,0,0" />
+                        </Border>
+                        <CheckBox Grid.Row="2" Name="TransferDetailCheck" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="TransferClerkCheck_Click">
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <Button Name="ReconcileButton" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,35,0,0" Height="42" Width="250" Click="ReconcileButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Download" Foreground="White" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="RECONCILE" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <!-- End of Day Report Troubleshooting Grid -->
+            <Grid Name="EODReportTroubleshootingGrid" Grid.Row="5" Grid.Column="0" Margin="0,25,0,0" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Name="EODReportPrintingStatus" Grid.Row="0" Grid.Column="0" Text="THE END OF DAY REPORT HAS BEEN SENT TO THE PRINTER" Foreground="{DynamicResource ApplicationPrimaryColor}" FontSize="20" FontWeight="Bold" Margin="10,5,10,5" VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="1"  Orientation="Vertical" >
+                    <uc:YesNoQuestionControl x:Name="EODReportPrintQuestion" Question="Did the End of Day Report print properly?" AnswerClick="EODReportPrintQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center"></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="EODReportPrinterCheckPanel" Grid.Row="2" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <TextBlock Text="GO THROUGH THE BASIC PRINTER TROUBLESHOOTING STEPS" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,6,0,0" />
+                    <uc:YesNoQuestionControl x:Name="EODReportPrinterCheckQuestion" Grid.Row="1" Question="After troubleshooting the printer did the report print properly?" AnswerClick="EODReportPrinterCheckQuestion_AnswerClick" QuestionWidth="575" HorizontalAlignment="Center" ></uc:YesNoQuestionControl>
+                </StackPanel>
+
+                <StackPanel Name="EODReportOptionsPanel" Grid.Row="3" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0" >
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="25,1,2,2" Width="695" Height="42" Margin="0,0,5,0" >
+                            <TextBlock Text="I want to log out and try reconciling on a different machine. " Foreground="Black" Margin="10,6,0,0" />
+                        </Border>
+                        <CheckBox Grid.Row="2" Name="TransferEODCheck" HorizontalAlignment="Left" Margin="6,1,0,0" Style="{DynamicResource CheckBoxStyleLarge32}" Click="TransferClerkCheck_Click">
+                        </CheckBox>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            
+        </Grid>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="0,15,15,0" >
+
+            <Button Name="PrintEODReport" HorizontalAlignment="Left" VerticalAlignment="Top" Click="PrintEODReport_Click" Padding="5" Visibility="Collapsed" Margin="0,0,0,0" Width="300" Height="42" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="White" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="PRINT END OF DAY REPORT" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+    </Grid>
+</Page>

@@ -1,0 +1,174 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.ReconcilePrimary.TabulatorCountPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.ReconcilePrimary"
+      xmlns:data="clr-namespace:VoterX.Core.Reconciles;assembly=ElectionPeople.StateVoterX.Core"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d"
+      FontSize="14">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <!-- COLUMN TWO ############################################################################ -->
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" >
+            <Grid Margin="0,25,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Name="AddTabulatorButton" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="32" Width="180" Padding="0" Click="AddTabulatorButton_Click" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="ADD A TABULATOR" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="BackButton" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="32" Width="100" Padding="0" Click="BackButton_Click" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="BACK" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <Button Name="NextButton" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Height="32" Width="100" Padding="0" Click="NextButton_Click" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="NEXT" FontSize="18" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <TextBlock Name="TabulatorListPageBoldLine1" Text="IMPORTANT: Make sure that each tabulator has both a name and serial number. Edit the tabulator's details if they are incorrect." Foreground="Black" FontWeight="Bold" FontSize="16" Margin="0,25,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" />
+
+            <TextBlock Name="TabulatorListPageBoldLine2" Text="Enter the counts for each tabulator." Foreground="Black" FontSize="16" FontWeight="Bold" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+
+            <TextBlock Name="TabulatorListPageBoldLine3" Text="If the tabulator is missing from the list, click ADD A TABULATOR (above)." Foreground="Black" FontSize="16" FontWeight="Bold" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Name="SearchScrollViewer" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel" Margin="0,25,0,10">
+
+            <ListBox Name="TabulatorList" ItemsSource="{Binding tabulatorList}" Width="850" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" Margin="0,-4,0,0" >
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="data:ReconcileTabulatorModel">
+                        <Border Name="LabelBorder" Margin="15" Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="2,2,2,2" CornerRadius="0" >
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="20" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Path=ReconcileTabulatorId}" FontSize="18" Visibility="Collapsed" />
+                                
+                                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Left" >
+                                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Margin="0" >
+                                        <TextBlock Text="TABULATOR NAME" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="18" Margin="5,3,5,7"/>
+                                    </Border>
+                                    <TextBox Text="{Binding Path=TabulatorName, Mode=TwoWay}" FontSize="18" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Width="200" BorderThickness="1,1,2,2" Margin="0" >
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                                <Style.Resources>
+                                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                                        <VisualBrush.Visual>
+                                                            <Label Content="ENTER TABULATOR NAME" FontSize="16" Foreground="Gray" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Style.Resources>
+                                                <Style.Triggers>
+                                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                                    </Trigger>
+                                                    <Trigger Property="Text" Value="{x:Null}">
+                                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                                        <Setter Property="Background" Value="White" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Right" >
+                                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Width="267" BorderThickness="0" Margin="0" >
+                                        <TextBlock Text="COUNT AT START OF DAY" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="18" Margin="5,3,5,7"/>
+                                    </Border>
+                                    <TextBox Text="{Binding Path=StartCount, Mode=TwoWay}" FontSize="18" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Width="100" BorderThickness="1,1,2,2" Margin="0" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Left" >
+                                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Margin="0" Width="164" >
+                                        <TextBlock Text="SERIAL NUMBER" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="18" Margin="5,3,5,7"/>
+                                    </Border>
+                                    <TextBox Text="{Binding Path=SerialNumber, Mode=TwoWay}" FontSize="18" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Width="200" BorderThickness="1,1,2,2" Margin="0" >
+                                        <TextBox.Style>
+                                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                                <Style.Resources>
+                                                    <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                                        <VisualBrush.Visual>
+                                                            <Label Content="ENTER SERIAL NUMBER" FontSize="16" Foreground="Gray" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Style.Resources>
+                                                <Style.Triggers>
+                                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                                    </Trigger>
+                                                    <Trigger Property="Text" Value="{x:Null}">
+                                                        <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                                        <Setter Property="Background" Value="White" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBox.Style>
+                                    </TextBox>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Right" >
+                                    <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Width="267" BorderThickness="0" Margin="0" >
+                                        <TextBlock Text="COUNT AT END OF DAY (NOW)" Foreground="{DynamicResource ApplicationForegroundColor}" FontSize="18" Margin="5,3,5,7"/>
+                                    </Border>
+                                    <TextBox Text="{Binding Path=EndCount, Mode=TwoWay}" FontSize="18" BorderBrush="{DynamicResource ApplicationPrimaryColor}" Width="100" BorderThickness="1,1,2,2" Margin="0" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </ScrollViewer>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+    </Grid>
+</Page>

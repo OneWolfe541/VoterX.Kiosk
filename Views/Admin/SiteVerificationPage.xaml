@@ -1,0 +1,115 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Admin.SiteVerificationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Admin"
+      xmlns:uc="clr-namespace:VoterX.Utilities.UserControls;assembly=VoterX.Utilities"
+      xmlns:uc2="clr-namespace:VoterX.Utilities.Controls;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="16"
+      Loaded="Page_Loaded">
+
+    <Grid Name="PageGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Name="VerifySitePanel" Grid.Column="1" Orientation="Vertical" >
+            <!--<TextBlock Text="WELCOME TO VoterX" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="26" Margin="0,65,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />-->
+
+            <!--<Border BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,10,0,10" />-->
+
+            <TextBlock Name="IntroTextBlock" Text="PLEASE VERIFY THIS SITE" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="24" Margin="0,45,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <!--<TextBlock Text="HAS BEEN CORRECTLY SETUP" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="26" Margin="0,0,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />-->
+
+            <StackPanel Name="SiteNameTestPanel" Orientation="Vertical" >
+                <TextBlock Text="FIRST VERIFY THE SITE LOCATION AND COMPUTER" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="24" Margin="0,15,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="CURRENT LOCATION" Margin="0,5,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <Border HorizontalAlignment="Left" Margin="5,5,0,0" Width="450" Height="42" Style="{DynamicResource ModernBorderTextBlockLabel}">
+                        <TextBlock Name="SiteName" Foreground="Black" />
+                    </Border>                
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="COMPUTER NUMBER" Margin="0,5,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <Border HorizontalAlignment="Left" Margin="5,5,0,0" Width="50" Height="42" Style="{DynamicResource ModernBorderTextBlockLabel}">
+                        <TextBlock Name="ComputerNumber" Foreground="Black" />
+                    </Border>
+                </StackPanel>
+
+                <uc:YesNoQuestionControl x:Name="SiteNameCheckQuestion" Question="Is the site name, and computer number correct?" AnswerClick="SiteNameCheckQuestion_AnswerClick" QuestionWidth="500" Margin="0,10,0,0" HorizontalAlignment="Left" ></uc:YesNoQuestionControl>
+            </StackPanel>
+            
+            <StackPanel Name="ZeroReportTestPanel" Orientation="Vertical" Visibility="Collapsed" >
+                <!--<Border BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,10,0,10" />-->
+
+                <TextBlock Text="NEXT PRINT A ZERO REPORT" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="24" Margin="0,15,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <Button Name="ZeroReportButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Height="42" Width="250" Click="ZeroReportButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                        <fa:ImageAwesome Name="fa_fighterjet" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                        <TextBlock Text="PRINT ZERO REPORT" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Name="ZeroReportPrinterCheckPanel" Orientation="Vertical" Visibility="Collapsed" Margin="0,0,0,0" >
+                    <TextBlock Text="A ZERO REPORT HAS BEEN SENT TO THE PRINTER" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="0,6,0,0" HorizontalAlignment="Center" />
+                    <!--<TextBlock Text="AS SPECIFIED IN YOUR TRAINING OR CONSULT YOUR AES USER MANUAL" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,0,0,5" />-->
+                    <uc:YesNoQuestionControl x:Name="ZeroReportPrinterCheckQuestion" Grid.Row="1" Question="Did the Zero Report print correctly?" AnswerClick="ZeroReportPrinterCheckQuestion_AnswerClick" QuestionWidth="500" HorizontalAlignment="Left" ></uc:YesNoQuestionControl>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Name="BallotTestPanel" Orientation="Vertical" Visibility="Collapsed">
+                <!--<Border BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,10,0,10" />-->
+
+                <TextBlock Text="NEXT PRINT A TEST BALLOT" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="24" Margin="0,15,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <Button Name="TestBallotButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Height="42" Width="250" Click="TestBallotButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                        <fa:ImageAwesome Name="fa_print" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="19" Width="19" Margin="0,1,10,0" />
+                        <TextBlock Text="PRINT TEST BALLOT" FontSize="18" />
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Name="TestBallotPrinterCheckPanel" Orientation="Vertical" Visibility="Collapsed" Margin="0,0,0,0" >
+                    <TextBlock Text="A TEST BALLOT HAS BEEN SENT TO THE PRINTER" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="0,6,0,0" />
+                    <!--<TextBlock Text="AS SPECIFIED IN YOUR TRAINING OR CONSULT YOUR AES USER MANUAL" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,0,0,5" />-->
+                    <uc:YesNoQuestionControl x:Name="TestBallotPrinterCheckQuestion" Grid.Row="1" Question="Did the Test Ballot print correctly?" AnswerClick="TestBallotPrinterCheckQuestion_AnswerClick" QuestionWidth="500" HorizontalAlignment="Left" ></uc:YesNoQuestionControl>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Name="SignatureTestPanel" Orientation="Vertical" Visibility="Collapsed">
+                <TextBlock Text="SIGN YOUR NAME TO CONFIRM THE SITE HAS BEEN VERIFIED" FontSize="18" FontWeight="DemiBold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="0,6,0,0" />
+                
+                <uc2:SignatureCaptureControl Grid.Row="2" Name="SignaturePadControl" Margin="0,15,0,0" />
+            </StackPanel>
+
+
+            <StackPanel Name="VerifiedSitePanel" Orientation="Vertical" Visibility="Collapsed" >
+                <TextBlock Text="THIS SITE HAS NOW BEEN VERIFIED" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="24" Margin="0,65,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+
+                <!--<Border BorderBrush="Black" BorderThickness="1,1,1,1" Height="1" Margin="0,10,0,10" />-->
+
+                <TextBlock Text="PLEASE LOGIN AGAIN TO BEGIN USING THIS APPLICATION" Foreground="{DynamicResource ApplicationPrimaryColor}" FontWeight="DemiBold" FontSize="24" Margin="0,10,0,5" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+        <Button Name="LogoutButton" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,15,0" Height="42" Width="250" Click="LogoutButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" >
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_signout" Icon="SignOut" Foreground="White" Height="24" Width="24" Margin="0,1,10,0" />
+                <TextBlock Text="LOG OUT" FontSize="18" />
+            </StackPanel>
+        </Button>
+
+    </Grid>
+</Page>

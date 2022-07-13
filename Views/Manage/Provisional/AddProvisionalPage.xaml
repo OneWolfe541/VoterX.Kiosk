@@ -1,0 +1,326 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Manage.AddProvisionalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Manage"
+      xmlns:convert="clr-namespace:VoterX.Utilities.Converters;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="{DynamicResource FontSizeSmall}"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <convert:BooleanToVisibilityConverter x:Key="convVis" />
+        <convert:NullBooleanConverter x:Key="convBool" />
+    </Page.Resources>
+
+    <Grid Name="PageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" /><!-- SPACER -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,15,10,0" Height="{DynamicResource ControlHeightNormal}" Width="250" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Command="{Binding Path=GoBackCommand}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO MENU" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <Grid Name="VoterDetailGrid" Margin="0,0,0,0" HorizontalAlignment="Center" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" Margin="0,10,0,5" >
+                    <TextBlock Text="{Binding Path=ProvisionalVoterMessage}" FontSize="{DynamicResource FontSizeNormal}" FontWeight="Bold" Foreground="{DynamicResource ApplicationPrimaryColor}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBlock Text="{Binding Path=RequiredFieldsMessage}" FontSize="{DynamicResource FontSizeTiny}" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>
+
+                <StackPanel Name="FirstNameGrid" Grid.Row="2" Grid.Column="0" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="FirstNameLabel" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="130" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=FirstNameRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=FirstNameRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="FIRST NAME *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.FirstName, Mode=TwoWay}" Width="200" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="MiddleNameGrid" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical" Visibility="Visible" Margin="5,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="80" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <TextBlock Text="MIDDLE" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.MiddleName, Mode=TwoWay}" Width="263" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="LastNameGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="LastNameLabel" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="130" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=LastNameRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=LastNameRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="LAST NAME *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.LastName, Mode=TwoWay}" Width="548" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="Address1Grid" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="Address1Label" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="130" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=AddressRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=AddressRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="ADDRESS 1 *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.Address1, Mode=TwoWay}" Width="548" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="Address2Grid" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="130" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <TextBlock Text="ADDRESS 2" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.Address2, Mode=TwoWay}" Width="548" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="CityGrid" Grid.Row="6" Grid.Column="0" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="CityLabel" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="130" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=CityRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=CityRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="CITY *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.City, Mode=TwoWay}" Width="200" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="StateGrid" Grid.Row="6" Grid.Column="1" Orientation="Vertical" Visibility="Visible" Margin="5,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="StateLabel" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="80" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=StateRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=StateRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="STATE *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.State, Mode=TwoWay}" Width="100" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="#446cb3" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="ZipGrid" Grid.Row="6" Grid.Column="2" Orientation="Vertical" Visibility="Visible" Margin="5,0,0,10">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="ZipCodeLabel" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="50" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=ZipRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=ZipRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="ZIP *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.Zip, Mode=TwoWay}" Width="107" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="#446cb3" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Name="CheckDateGrid" Grid.Row="7" Grid.Column="0" Orientation="Vertical" Visibility="Visible" Margin="0,0,0,5">
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Name="BirthYearLabel" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="130" Height="{DynamicResource ControlHeightSmall}" Margin="0" >
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=BirthYearRequired, Converter={StaticResource convBool}}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationPrimaryColor}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=BirthYearRequired, Converter={StaticResource convBool}}" Value="False">
+                                            <Setter Property="Background" Value="{DynamicResource ApplicationDangerColor}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="BIRTH YEAR *" Foreground="{DynamicResource ApplicationForegroundColor}" Margin="8,7,0,0"/>
+                        </Border>
+                        <TextBox Text="{Binding Path=VoterItem.Data.DOBYear, Mode=TwoWay}" Width="200" Height="{DynamicResource ControlHeightSmall}" Margin="0,0,0,0" Padding="5,5,0,0" BorderBrush="#446cb3" BorderThickness="1,1,2,2" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" >
+                    <TextBlock Text="{Binding Path=SelectStyleMessage}" FontSize="{DynamicResource FontSizeNormal}" Margin="0,5,0,5" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>
+
+                <StackPanel Name="PrecinctPartsGrid" Grid.Row="9" Grid.Column="0" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <TextBlock Text="PRECINCT PART" Margin="0,0,0,0" VerticalAlignment="Top" Width="130" Height="{DynamicResource ControlHeightSmall}" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="PrecinctParts" 
+                              DisplayMemberPath="PrecinctPart" 
+                              SelectedValuePath="PrecinctPartID" 
+                              Width="200" Margin="0,0,0,0"
+                              Height="{DynamicResource ControlHeightSmall}"
+                              Style="{DynamicResource ComboBoxFlatStyle}"
+                              ToolTip="Select a precinct"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding PrecinctList}"
+                              SelectedItem="{Binding SelectedPrecinctItem}"
+                              IsSynchronizedWithCurrentItem="True" />
+                </StackPanel>
+
+                <StackPanel Name="PartyGrid" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="{Binding Path=PartyVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" Margin="5,0,0,5">
+                    <TextBlock Text="PARTY" Margin="0,0,0,0" VerticalAlignment="Top" Width="80" Height="{DynamicResource ControlHeightSmall}" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="Parties" 
+                              DisplayMemberPath="PartyCode" 
+                              SelectedValuePath="PartyCode" 
+                              Width="150" Margin="0,0,0,0"
+                              Height="{DynamicResource ControlHeightSmall}"
+                              Style="{DynamicResource ComboBoxFlatStyle}"
+                              ToolTip="Select a party"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding PartyList}"
+                              SelectedItem="{Binding SelectedPartyItem}"
+                              IsSynchronizedWithCurrentItem="True" />
+                </StackPanel>
+
+                <StackPanel Name="BallotStyleGrid" Grid.Row="10" Grid.Column="0" Orientation="Horizontal" Visibility="Visible" Margin="0,0,0,5">
+                    <TextBlock Name="BallotStyleLabel" Text="BALLOT STYLE *" Margin="0,5,0,0" VerticalAlignment="Top" Width="130" Height="{DynamicResource ControlHeightSmall}" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="BallotStyles" 
+                              DisplayMemberPath="BallotStyleName" 
+                              SelectedValuePath="BallotStyleId" 
+                              Width="200" Margin="0,5,0,0"
+                              Height="{DynamicResource ControlHeightSmall}"
+                              Style="{DynamicResource ComboBoxFlatStyle}"
+                              ToolTip="Select a precinct"
+                              IsEnabled="False"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding BallotStyleList}"
+                              SelectedItem="{Binding SelectedBallotStyleItem}"
+                              IsSynchronizedWithCurrentItem="True" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Vertical" >
+                    <TextBlock Name="SelectReasonMessage" Text="{Binding Path=SelectReasonMessage}" FontSize="{DynamicResource FontSizeNormal}" Margin="0,5,0,5" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{DynamicResource ApplicationPrimaryColor}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,0">
+                    <TextBlock Name="ReasonLabel" Text="REASON *" Margin="0,-1,0,0" VerticalAlignment="Top" Width="130" Height="{DynamicResource ControlHeightSmall}" Style="{DynamicResource ModernTextBlockLabel}"/>
+                    <ComboBox Name="ProvisionalReason" 
+                          DisplayMemberPath="ProvisionalReasonDescription" 
+                          SelectedValuePath="ProvisionalReasonId" 
+                          Width="385" Margin="0,-1,0,0" 
+                          Style="{DynamicResource ComboBoxFlatStyle}"
+                          ToolTip="Select a reason"
+                          SelectedIndex="0"
+                          ItemsSource="{Binding ReasonsList}"
+                          SelectedItem="{Binding SelectedReasonItem}"
+                          IsSynchronizedWithCurrentItem="True" />
+                </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2" Visibility="{Binding Path=SaveButtonVisible, Converter={StaticResource convVis}, FallbackValue=Collapsed}">
+            <Button Name="SaveChanges" HorizontalAlignment="Left" VerticalAlignment="Top" Width="300" Height="{DynamicResource ControlHeightNormal}" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Visible" 
+                    Command="{Binding Path=SaveChangesCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_legal" Icon="FileText" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeSmall}" Width="{DynamicResource faIconSizeSmall}" Margin="0,1,10,0" />
+                    <TextBlock Text="SAVE CHANGES" FontSize="{DynamicResource FontSizeNormal}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

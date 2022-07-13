@@ -1,0 +1,117 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.VoidedBallots.VoidPrintTroubleShootingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.VoidedBallots"
+      xmlns:convert="clr-namespace:VoterX.Utilities.Converters;assembly=VoterX.Utilities"
+      xmlns:uc="clr-namespace:VoterX.Utilities.Controls;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="{DynamicResource FontSizeNormal}"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <convert:BooleanToVisibilityConverter x:Key="convVis" />
+    </Page.Resources>
+
+    <Grid Name="PageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" /><!-- SPACER -->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <!--<Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,15,10,0" Height="{DynamicResource ControlHeightNormal}" Width="250" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Command="{Binding Path=GoBackCommand}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO SEARCH" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>-->
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <uc:PrintVerificationQuestionnaireControl x:Name="BallotPrintedQuestionnaireControl" QuestionWidth="575" DataContext="{Binding BallotPrintedQuestionnaire}" />
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" >
+                <TextBlock Text="BALLOT STYLE" Margin="0,0,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}" Visibility="Visible"/>
+                <TextBox Text="{Binding Path=BallotStyleName, Mode=OneWay}" Margin="0,0,0,0" Width="275" Style="{DynamicResource ModernTextboxStyleWithBorder}" Visibility="Visible" IsReadOnly="True" />
+                <TextBlock Text="BALLOT NUMBER" Margin="5,0,0,0" VerticalAlignment="Center" Height="42" Style="{DynamicResource ModernTextBlockLabel}" Visibility="Visible"/>
+                <TextBox Text="{Binding Path=BallotNumber, Mode=OneWay}" Margin="0,0,0,0" Width="100" Style="{DynamicResource ModernTextboxStyleWithBorder}" Visibility="Visible" IsReadOnly="True" />
+            </StackPanel>
+
+            <uc:PrintVerificationQuestionnaireControl x:Name="ApplicationPrintedQuestionnaireControl" QuestionWidth="575" DataContext="{Binding ApplicationPrintedQuestionnaire}" Margin="0,15,0,0" />
+
+            <uc:PrintVerificationQuestionnaireControl x:Name="PermitPrintedQuestionnaireControl" QuestionWidth="575" DataContext="{Binding PermitPrintedQuestionnaire}" Margin="0,15,0,0" />
+
+            <uc:PrintVerificationQuestionnaireControl x:Name="StubPrintedQuestionnaireControl" QuestionWidth="575" DataContext="{Binding StubPrintedQuestionnaire}" Margin="0,15,0,0" />
+        </StackPanel>
+
+        <!-- COLUMN THREE ############################################################################ -->
+
+        <!--<StackPanel Name="BallotFunctions" Grid.Row="1" Grid.Column="2" Orientation="Vertical" Visibility="Visible" Margin="0,15,15,0" >
+            <Button Name="OptOutButton" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5" Width="200" Height="{DynamicResource ControlHeightNormal}" Style="{DynamicResource ModernButtonStyle}" 
+                    Command="{Binding Path=GoBackCommand}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="exit_fa_arrowleft" Icon="ArrowLeft" Foreground="White" Height="{DynamicResource faIconSizeNormal}" Width="{DynamicResource faIconSizeNormal}" Margin="0,1,10,0" />
+                    <TextBlock Text="RETURN TO SEARCH" FontSize="{DynamicResource FontSizeNormal}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>-->
+
+        <Button Name="OptOutButton" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{DynamicResource ControlHeightNormal}" Width="225" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Visibility="{Binding Path=GoBackVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" 
+                Command="{Binding Path=GoBackCommand}">
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="exit_fa_arrowleft" Icon="ArrowLeft" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeSmall}" Width="{DynamicResource faIconSizeSmall}" Margin="0,1,10,0" />
+                <TextBlock Text="BACK TO SEARCH" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+
+        <Button Name="ReprintBallotButton" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{DynamicResource ControlHeightNormal}" Width="225" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Visibility="{Binding Path=ReprintBallotVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" 
+                Command="{Binding Path=ReprintBallotCommand}">
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_print_ballot" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeSmall}" Width="{DynamicResource faIconSizeSmall}" Margin="0,1,10,0" />
+                <TextBlock Text="REPRINT BALLOT" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+
+        <Button Name="ReprintApplicationButton" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{DynamicResource ControlHeightNormal}" Width="225" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Visibility="{Binding Path=ReprintApplicationVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" 
+                Command="{Binding Path=ReprintApplicationCommand}">
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_print_application" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeSmall}" Width="{DynamicResource faIconSizeSmall}" Margin="0,1,10,0" />
+                <TextBlock Text="REPRINT APPLICATION" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+
+        <Button Name="ReprintPermitButton" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{DynamicResource ControlHeightNormal}" Width="225" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Visibility="{Binding Path=ReprintPermitVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" 
+                Command="{Binding Path=ReprintPermitCommand}">
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_print_permit" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeSmall}" Width="{DynamicResource faIconSizeSmall}" Margin="0,1,10,0" />
+                <TextBlock Text="REPRINT PERMIT" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+
+        <Button Name="ReprintStubButton" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{DynamicResource ControlHeightNormal}" Width="225" Padding="5" Style="{DynamicResource ModernButtonStyle}" 
+                Visibility="{Binding Path=ReprintStubVisibility, Converter={StaticResource convVis}, FallbackValue=Collapsed}" 
+                Command="{Binding Path=ReprintStubCommand}">
+            <StackPanel Orientation="Horizontal">
+                <fa:ImageAwesome Name="fa_print_stub" Icon="Print" Foreground="{DynamicResource ApplicationForegroundColor}" Height="{DynamicResource faIconSizeSmall}" Width="{DynamicResource faIconSizeSmall}" Margin="0,1,10,0" />
+                <TextBlock Text="REPRINT STUB" FontSize="{DynamicResource FontSizeNormal}" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</Page>

@@ -1,0 +1,162 @@
+﻿<Page x:Class="VoterX.Kiosk.Views.Signature.SignatureCaptureUWPPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Signature"
+      xmlns:uc="clr-namespace:VoterX.Utilities.UserControls;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d" 
+      FontSize="20">
+
+    <Grid Name="PageGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+
+        <!-- COLUMN ONE ############################################################################ -->
+
+        <Button Name="BackButton" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,15,0,0" Height="42" Width="250" Click="BackButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" >            
+            <Grid>
+                <StackPanel Name="BackReturnLabel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <fa:ImageAwesome Name="finish_fa_arrowleft" Icon="ArrowLeft" Foreground="White" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="RETURN TO SEARCH" FontSize="18" />
+                </StackPanel>
+                <StackPanel Name="BackLogoutLabel" Orientation="Horizontal" Visibility="Collapsed">
+                    <fa:ImageAwesome Name="fa_arrowleft" Icon="ArrowLeft" Foreground="White" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="RETURN TO SEARCH" FontSize="18" />
+                </StackPanel>
+            </Grid>
+        </Button>
+
+        <!-- COLUMN TWO ############################################################################ -->
+
+        <Grid Name="VoterDetailGrid" Grid.Row="1" Grid.Column="1" Margin="20,15,32,0" HorizontalAlignment="Center" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <!--<Border Grid.Row="0" Grid.RowSpan="8" Background="White" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="6" >
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" />
+                </Border.Effect>
+            </Border>-->
+
+            <TextBlock Grid.Row="0" Text="CAPTURE SIGNATURE FOR CURRENT VOTER" FontSize="24" FontWeight="Bold" Foreground="{DynamicResource ApplicationPrimaryColor}" Margin="10,5,10,5" VerticalAlignment="Center" />
+
+            <StackPanel Name="NameBox" Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Visibility="Visible" >
+                <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                    <TextBlock Text="NAME" Foreground="White" FontSize="16" Margin="8,7,0,0"/>
+                </Border>
+                <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                    <TextBlock Name="FullName" FontSize="16" Margin="10,6,0,0"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Name="AddressBox" Grid.Row="3" Grid.Column="0" Orientation="Horizontal" Visibility="Visible" Margin="0,5,0,0" >
+                <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                    <TextBlock Text="ADDRESS" Foreground="White" FontSize="16" Margin="8,7,0,0"/>
+                </Border>
+                <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                    <StackPanel Orientation="Horizontal" Margin="10,6,0,0">
+                        <TextBlock Name="Address" FontSize="16" />
+                        <TextBlock Text=", " FontSize="16" />
+                        <TextBlock Name="CityStateAndZip" FontSize="16" Margin="4,0,0,0" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Name="DateBox" Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Visibility="Visible" Margin="0,5,0,0" >
+                <Border Background="{DynamicResource ApplicationPrimaryColor}" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="0" Width="110" Height="40" Margin="0" >
+                    <TextBlock Text="BIRTH YEAR" Foreground="White" FontSize="16" Margin="8,7,0,0"/>
+                </Border>
+                <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="1,1,2,2" Width="510" Height="40" Margin="0,0,5,0" >
+                    <TextBlock Name="BirthYear" FontSize="16" Margin="10,6,0,0"/>
+                </Border>
+            </StackPanel>
+
+            <!--<Button Grid.Row="4" Name="EnablePad" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="42" Click="EnablePadButton_Click" Margin="0,15,0,0"  Padding="5" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_pencil" Icon="Pencil" Foreground="White" Height="19" Width="19" Margin="0,1,10,0" />
+                    <TextBlock Text="ENABLE SIGNATURE PAD" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Border Grid.Row="5" Background="LightGray" BorderBrush="Black" Height="114" Width="184" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1,1,1,1" CornerRadius="2" Margin="5" >
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="0" />
+                </Border.Effect>
+                <Image Name="VoterSignature" Height="110" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Border>-->
+
+            <Button Grid.Row="6" Name="EnableUWPPad" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="42" Click="EnableUWPPadButton_Click" Padding="5" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed" >
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_eraser" Icon="Eraser" Foreground="White" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="ENABLE SIGNATURE PAD" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <uc:SignatureUWPControl Grid.Row="7" Name="SignatureCaptureControl" EnablePadClick="Signature_EnablePadClick" EnablePadClickPreview="Signature_EnablePadClickPreview" DeleteClick="Signature_DeleteClick" />
+
+            <StackPanel Grid.Row="8" Orientation="Vertical" Margin="20,15,20,0">
+                <TextBlock Text="If Voter Refuses to sign the electronic signature pad, or the signature pad has malfunctioned, check the refused to sign box:" TextWrapping="Wrap" Foreground="Red" />
+                <CheckBox Name="SignRefused" HorizontalAlignment="Left" Margin="12,0,0,0" Style="{DynamicResource CheckBoxStyleLarge20}" Click="SignRefused_Click">
+                    <TextBlock Text="Voter Refuses to Sign or Signature Pad Malfunctioned" Margin="0,0,0,0"/>
+                </CheckBox>
+            </StackPanel>
+
+            <!-- Signature Refused -->
+            <StackPanel Name="RefuseVerificationPanel" Grid.Row="9" Orientation="Horizontal" VerticalAlignment="Top" Visibility="Collapsed" Margin="0,10,0,0" >
+                <Border Background="White" BorderBrush="{DynamicResource ApplicationPrimaryColor}" BorderThickness="25,1,2,2" Width="520" Height="40" Margin="0,0,5,0" >
+                    <TextBlock Text="Signature will be deleted, are you sure you want to continue?" FontSize="16" Foreground="Black" Margin="10,10,0,0" />
+                </Border>
+                <ToggleButton Name="RefusedSignatureYes" Width="80" Height="40" Margin="0,0,0,0" IsChecked="False" Style="{DynamicResource ModernToggleButtonStyle}" Click="RefusedSignatureYes_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="refuse_fa_check_yes" Icon="Check" Foreground="White" Height="16" Width="16" Margin="-15,1,5,0" Visibility="Hidden" />
+                        <TextBlock Text="YES" FontSize="16" />
+                    </StackPanel>
+                </ToggleButton>
+                <ToggleButton Name="RefusedSignatureNo" Width="80" Height="40" Margin="10,0,0,0" IsChecked="False" Style="{DynamicResource ModernToggleButtonStyle}" Click="RefusedSignatureNo_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:ImageAwesome Name="refuse_fa_check_no" Icon="Check" Foreground="White" Height="16" Width="16" Margin="-15,1,5,0" Visibility="Hidden" />
+                        <TextBlock Text="NO" FontSize="16" />
+                    </StackPanel>
+                </ToggleButton>
+            </StackPanel>
+        </Grid>
+
+        <!-- COLUMN THREE ########################################################################## -->
+
+        <StackPanel Name="SignatureFunctions" Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="0,15,15,0" >
+
+            <Button Name="PrintBallot" HorizontalAlignment="Left" VerticalAlignment="Top" Click="PrintBallot_Click" Padding="5" Visibility="Collapsed" Margin="0,0,0,0" Width="200" Height="42" Style="{DynamicResource ModernButtonStyle}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="-15,0,0,0">
+                    <TextBlock Text="NEXT" FontSize="18" />
+                    <fa:ImageAwesome Name="fa_arrowright" Icon="ArrowRight" Foreground="White" Height="19" Width="19" Margin="10,1,0,0" />
+                    <!--<TextBlock Text="&lt;" FontSize="24" Margin="0,-7,6,0" />-->
+                </StackPanel>
+            </Button>
+
+            <!--<Button Name="CheckDevices" Content="CHECK SIGNATURE PAD" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CheckDevicesButton_Click" Padding="5" Visibility="Collapsed" Style="{DynamicResource ModernButtonStyle}" />-->
+
+        </StackPanel>
+
+    </Grid>
+</Page>

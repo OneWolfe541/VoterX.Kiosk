@@ -1,0 +1,85 @@
+﻿<utilities:MenuBasePage x:Class="VoterX.Kiosk.Views.Menu.ManagerMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VoterX.Kiosk.Views.Menu"
+      xmlns:utilities="clr-namespace:VoterX.Utilities.BasePageDefinitions;assembly=VoterX.Utilities"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      mc:Ignorable="d">
+
+    <Grid HorizontalAlignment="Stretch" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        
+        <!--<StackPanel Grid.Row="0" Name="TopMenuPanel" Orientation="Vertical" Margin="0,0,0,0">
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="SystemSettings_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Gear" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="SYSTEM SETTINGS" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>-->
+
+        <StackPanel Grid.Row="1" Name="MiddleMenuPane" Orientation="Vertical" Margin="0,0,0,0">
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ReportsMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="BarChart" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="REPORTS" FontSize="18" />
+                </StackPanel>
+            </Button>
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="AddProvisional_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="UserPlus" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="ADD PROVISIONAL" FontSize="18" />
+                </StackPanel>
+            </Button>
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ProvisionalSearch_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x1F50D;" FontSize="24" Width="24" Margin="0,-4,10,0" />
+                    <TextBlock Text="PROVISIONAL SEARCH" FontSize="18" />
+                </StackPanel>
+            </Button>
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ChangeBallotStyle_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="File" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="EDIT BALLOT STYLE" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Button Name="EmergencyBallotMenu" Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="EmergencyBallotMenu_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Name="fa_clipboard" Icon="Clipboard" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="EMERGENCY BALLOTS" FontSize="18" />
+                </StackPanel>
+            </Button>
+
+            <Border BorderBrush="{DynamicResource ApplicationForegroundColor}" BorderThickness="2,2,2,2" Height="2" HorizontalAlignment="Stretch" Margin="0,10,0,5" Visibility="Hidden" />
+
+            <Button Height="42" Margin="0,5,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="ClosePolls_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Download" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,0,10,0" />
+                    <TextBlock Text="END OF DAY" FontSize="18" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Name="BottomMenuPane" Orientation="Vertical" Margin="0,0,0,0">
+            <Button Grid.Row="2" Height="42" Margin="0,5,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="MenuTest_Click" Style="{DynamicResource ModernButtonStyle}" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="Diamond" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="TEST" FontSize="18" />
+                </StackPanel>
+            </Button>
+            <Button Grid.Row="2" Height="42" Margin="0,5,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Click="MenuLogOut_Click" Style="{DynamicResource ModernButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="SignOut" Foreground="{DynamicResource ApplicationForegroundColor}" Height="24" Width="24" Margin="0,1,10,0" />
+                    <TextBlock Text="LOG OUT" FontSize="18" />
+                </StackPanel> 
+            </Button>
+        </StackPanel>
+    </Grid>
+</utilities:MenuBasePage>
